@@ -6,35 +6,35 @@ import { Student } from '../../features/dashboard/students/models/student';
 export class StudentsService {
   private MY_DATABASE = [
     {
-      idStudent: 'st1234',
+      id: 'st1234',
       firstName: 'Carlos',
       lastName: 'Gonzalez',
       address: '123 Calle Principal, Ciudad, País',
       email: 'carlos.gonzalez@example.com',
     },
     {
-      idStudent: 'st1235',
+      id: 'st1235',
       firstName: 'Ana',
       lastName: 'Martinez',
       address: '456 Avenida Central, Ciudad, País',
       email: 'ana.martinez@example.com',
     },
     {
-      idStudent: 'st1236',
+      id: 'st1236',
       firstName: 'Luis',
       lastName: 'Perez',
       address: '789 Calle Secundaria, Ciudad, País',
       email: 'luis.perez@example.com',
     },
     {
-      idStudent: 'st1237',
+      id: 'st1237',
       firstName: 'María',
       lastName: 'Lopez',
       address: '1011 Calle Tercera, Ciudad, País',
       email: 'maria.lopez@example.com',
     },
     {
-      idStudent: 'st1238',
+      id: 'st1238',
       firstName: 'Jorge',
       lastName: 'Ramirez',
       address: '1213 Avenida Cuarta, Ciudad, País',
@@ -44,7 +44,7 @@ export class StudentsService {
 
   editStudentById(id: string, update: Student) {
     this.MY_DATABASE = this.MY_DATABASE.map((el) =>
-      el.idStudent === id ? { ...update, id } : el
+      el.id === id ? { ...update, id } : el
     );
     return this.getStudents();
   }
@@ -58,13 +58,13 @@ export class StudentsService {
     });
   }
 
-  addStudent(course: Student): Observable<Student[]> {
-    this.MY_DATABASE.push(course);
+  addStudent(student: Student): Observable<Student[]> {
+    this.MY_DATABASE.push(student);
     return this.getStudents();
   }
 
   deleteStudentById(id: string): Observable<Student[]> {
-    this.MY_DATABASE = this.MY_DATABASE.filter((el) => el.idStudent != id);
+    this.MY_DATABASE = this.MY_DATABASE.filter((el) => el.id != id);
     return this.getStudents();
   }
 }

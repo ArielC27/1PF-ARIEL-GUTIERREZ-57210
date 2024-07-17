@@ -17,7 +17,7 @@ export class StudentDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: Student | null
   ) {
     this.studentForm = this.fb.group({
-      idStudent: [this.data?.idStudent || '', Validators.required],
+      idStudent: [this.data?.id || '', Validators.required],
       firstName: [this.data?.firstName || '', Validators.required],
       lastName: [this.data?.lastName || '', Validators.required],
       address: [this.data?.address || '', Validators.required],

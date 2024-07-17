@@ -1,4 +1,4 @@
-<div class="example-sidenav-content">
+<!-- <div class="example-sidenav-content">
   <button (click)="openDialog()" mat-flat-button>
     <mat-icon>add</mat-icon> Agregar Alumno
   </button>
@@ -47,4 +47,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-</div>
+</div> -->
+<app-generic-list
+  [dataSource]="dataSource"
+  [displayedColumns]="displayedColumns"
+  (editStudentEvent) = "editStudent($event)"
+  (deleteStudentEvent) = "deleteStudentById($event)"
+>
+</app-generic-list>

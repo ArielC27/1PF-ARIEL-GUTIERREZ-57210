@@ -28,6 +28,7 @@ export class StudentsComponent {
   ) {}
 
   ngOnInit(): void {
+    
     this.loadStudents();
   }
 

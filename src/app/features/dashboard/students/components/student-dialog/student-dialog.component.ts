@@ -1,38 +1,40 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CourseDialogComponent } from '../../../courses/components/course-dialog/course-dialog.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-student-dialog',
   templateUrl: './student-dialog.component.html',
-  styleUrl: './student-dialog.component.scss',
+  styleUrls: ['./student-dialog.component.scss'],
 })
 export class StudentDialogComponent {
   studentForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private matDialogRef: MatDialogRef<CourseDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public editingStudent?: Student
+    private dialogRef: MatDialogRef<StudentDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Student | null
   ) {
     this.studentForm = this.fb.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      email: [null, Validators.required],
+      idStudent: [this.data?.idStudent || '', Validators.required],
+      firstName: [this.data?.firstName || '', Validators.required],
+      lastName: [this.data?.lastName || '', Validators.required],
+      address: [this.data?.address || '', Validators.required],
+      email: [this.data?.email || '', [Validators.required, Validators.email]],
     });
+  }
 
-    if (this.editingStudent) {
-      this.studentForm.patchValue(this.editingStudent);
-    }
+  ngOnInit(): void {
   }
 
   onSubmit(): void {
     if (this.studentForm.valid) {
-      this.matDialogRef.close(this.studentForm.value);
-    } else {
-      /// mostar error
+      this.dialogRef.close(this.studentForm.value);
     }
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(null);
   }
 }

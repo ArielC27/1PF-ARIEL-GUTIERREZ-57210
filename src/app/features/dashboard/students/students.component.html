@@ -48,10 +48,16 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div> -->
-<app-generic-list
-  [dataSource]="dataSource"
-  [displayedColumns]="displayedColumns"
-  (editStudentEvent) = "editStudent($event)"
-  (deleteStudentEvent) = "deleteStudentById($event)"
->
-</app-generic-list>
+<div class="example-sidenav-content">
+  <button (click)="openDialog()" mat-flat-button>
+    <mat-icon>add</mat-icon> Agregar Alumno
+  </button>
+  <p>El nombre del alumno es: {{ nombreAlumno }}</p>
+  <app-generic-list
+    [dataSource]="dataSource"
+    [displayedColumns]="displayedColumns"
+    (editStudentEvent)="editStudent($event)"
+    (deleteStudentEvent)="deleteStudentById($event)"
+  >
+  </app-generic-list>
+</div>

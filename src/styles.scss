@@ -10,11 +10,11 @@
 @include mat.core();
 
 // Define the theme object.
-$pf-baez-57210-theme: mat.define-theme(
+$pf-gutierrez-57210-theme: mat.define-theme(
   (
     color: (
-      theme-type: light,
-      primary: mat.$violet-palette,
+      theme-type: dark,
+      primary: mat.$red-palette,
       tertiary: mat.$blue-palette,
     ),
     density: (
@@ -27,15 +27,15 @@ $pf-baez-57210-theme: mat.define-theme(
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 :root {
-  @include mat.all-component-themes($pf-baez-57210-theme);
+  @include mat.all-component-themes($pf-gutierrez-57210-theme);
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.
 // For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($pf-baez-57210-theme);
+// @include mat.typography-hierarchy($pf-gutierrez-57210-theme);
 
 // Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($pf-baez-57210-theme);
+// @include mat.color-variants-backwards-compatibility($pf-gutierrez-57210-theme);
 /* You can add global styles to this file, and also import other style files */
 
 html,

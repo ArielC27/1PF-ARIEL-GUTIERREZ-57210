@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'pf-baez-57210'`, () => {
+  it(`should have as title 'pf-gutierrez-57210-theme'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pf-baez-57210');
+    expect(app.title).toEqual('pf-gutierrez-57210-theme');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pf-baez-57210');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pf-gutierrez-57210-theme');
   });
 });

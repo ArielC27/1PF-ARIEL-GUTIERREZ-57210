@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pf-baez-57210": {
+    "pf-gutierrez-57210-theme": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/pf-baez-57210",
+            "outputPath": "dist/pf-gutierrez-57210-theme",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pf-baez-57210:build:production"
+              "buildTarget": "pf-gutierrez-57210-theme:build:production"
             },
             "development": {
-              "buildTarget": "pf-baez-57210:build:development"
+              "buildTarget": "pf-gutierrez-57210-theme:build:development"
             }
           },
           "defaultConfiguration": "development"

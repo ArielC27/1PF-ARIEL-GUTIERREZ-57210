@@ -6,15 +6,7 @@
 
 <mat-dialog-content>
   <form [formGroup]="studentForm">
-    <!-- <mat-form-field class="w-full mb-3">
-      <mat-label>ID</mat-label>
-      <input formControlName="idStudent" matInput />
-      <mat-error *ngIf="studentForm.get('idStudent')?.hasError('required')"
-        >El campo es requerido</mat-error
-      >
-    </mat-form-field> -->
-
-    <mat-form-field class="w-full mb-3">
+    <mat-form-field class="w-full mb-3 pt-3">
       <mat-label>Nombre</mat-label>
       <input formControlName="firstName" matInput />
       <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')"

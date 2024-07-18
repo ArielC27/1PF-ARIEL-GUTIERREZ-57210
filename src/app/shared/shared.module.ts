@@ -7,6 +7,7 @@ import { GenericListComponent } from "./components/generic-list/generic-list.com
 import { MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { UppercasePipe } from './pipes/uppercase/uppercase.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MatButtonModule } from "@angular/material/button";
     ResaltadoDirective,
     RepetirDirective,
     GenericListComponent,
+    UppercasePipe,
   ],
   imports: [CommonModule, MatTableModule, MatIconModule, MatButtonModule],
   exports: [

@@ -20,6 +20,17 @@ export class StudentsComponent {
     "email",
     "actions"
   ];
+
+  columnsResult = {
+
+    id: "#",
+    firstName: "nombre",
+    lastName: "Apellido",
+    address: "Direccion",
+    email: "Email",
+    actions: "Acciones"
+  };
+  
   dataSource: Student[] = [];
   isLoading = false;
 

@@ -1,44 +1,44 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Student } from '../../features/dashboard/students/models/student';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Student } from "../../features/dashboard/students/models/student";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class StudentsService {
-  private MY_DATABASE = [
+  private MY_DATABASE: Student[] = [
     {
-      id: 'st1234',
-      firstName: 'Carlos',
-      lastName: 'Gonzalez',
-      address: '123 Calle Principal, Ciudad, País',
-      email: 'carlos.gonzalez@example.com',
+      id: "st1234",
+      firstName: "Carlos",
+      lastName: "Gonzalez",
+      address: "123 Calle Principal, Ciudad, País",
+      email: "carlos.gonzalez@example.com",
     },
     {
-      id: 'st1235',
-      firstName: 'Ana',
-      lastName: 'Martinez',
-      address: '456 Avenida Central, Ciudad, País',
-      email: 'ana.martinez@example.com',
+      id: "st1235",
+      firstName: "Ana",
+      lastName: "Martinez",
+      address: "456 Avenida Central, Ciudad, País",
+      email: "ana.martinez@example.com",
     },
     {
-      id: 'st1236',
-      firstName: 'Luis',
-      lastName: 'Perez',
-      address: '789 Calle Secundaria, Ciudad, País',
-      email: 'luis.perez@example.com',
+      id: "st1236",
+      firstName: "Luis",
+      lastName: "Perez",
+      address: "789 Calle Secundaria, Ciudad, País",
+      email: "luis.perez@example.com",
     },
     {
-      id: 'st1237',
-      firstName: 'María',
-      lastName: 'Lopez',
-      address: '1011 Calle Tercera, Ciudad, País',
-      email: 'maria.lopez@example.com',
+      id: "st1237",
+      firstName: "María",
+      lastName: "Lopez",
+      address: "1011 Calle Tercera, Ciudad, País",
+      email: "maria.lopez@example.com",
     },
     {
-      id: 'st1238',
-      firstName: 'Jorge',
-      lastName: 'Ramirez',
-      address: '1213 Avenida Cuarta, Ciudad, País',
-      email: 'jorge.ramirez@example.com',
+      id: "st1238",
+      firstName: "Jorge",
+      lastName: "Ramirez",
+      address: "1213 Avenida Cuarta, Ciudad, País",
+      email: "jorge.ramirez@example.com",
     },
   ];
 

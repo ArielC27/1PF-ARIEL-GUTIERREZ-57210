@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 })
 export class GenericListComponent<T> {
   @Input() displayedColumns: string[] = [];
+  @Input() columnsResult: any = {};
   @Input() dataSource: T[] = [];
 
   @Output() editStudentEvent = new EventEmitter<T>();

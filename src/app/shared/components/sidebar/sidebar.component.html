@@ -1,4 +1,3 @@
-<mat-drawer-container class="example-container" autosize>
   <!-- SIDEBAR INICIO -->
   <mat-drawer [opened]="false" #drawer class="example-sidenav" mode="side" style="background-color: #3e343289;">
     <mat-nav-list>
@@ -7,14 +6,3 @@
     </mat-nav-list>
   </mat-drawer>
   <!-- SIDEBAR FIN -->
-
-  <!-- MAIN CONTENT INICIO-->
-  <div class="example-sidenav-content">
-    <app-navbar (sidebarEmitter)="drawer.toggle()"></app-navbar>
-
-    <main class="p-5">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
-  <!-- MAIN CONTENT FIN-->
-</mat-drawer-container>

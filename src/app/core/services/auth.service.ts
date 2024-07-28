@@ -9,40 +9,6 @@ export class AuthService {
 
   login() {}
 
-  // async login() {
-  //   // console.log('EJECUTANDO LOGIN REAL');
-  //   console.log('START');
-  //   await this.obtenerUsuarioPromise()
-  //     // Cuando promise se resuelve satisfactoriamente
-  //     .then((usuario) => {
-  //       console.log('USUARIO', usuario);
-  //     })
-  //     // Atrapamos el error
-  //     .catch((err) => {
-  //       alert(err);
-  //     })
-  //     .finally(() => {});
-  //   console.log('END');
-  // }
-
-  // login() {
-  //   this.obtenerUsuarioObservable().subscribe({
-  //     // Se ejecuta cuando el observable emite un valor (sin errores)
-  //     next: (usuario) => {
-  //       console.log(usuario);
-  //     },
-  //     // Se ejecuta cuando el observable emite un error
-  //     error: (error) => {
-  //       console.log('OCURRIO ALGO', error);
-  //     },
-  //     // Se ejecuta cuando el observable deja de emitir valores
-  //     complete: () => {
-  //       console.log(
-  //         'El observable se completo, por ende no va a emitir mas valores'
-  //       );
-  //     },
-  //   });
-  // }
 
   verificarToken() {}
 

@@ -99,7 +99,7 @@ export class StudentsComponent {
   }
 
   deleteStudentById(student: Student) {
-    if (confirm("Esta seguro?")) {
+    if (confirm("¿Esta seguro?")) {
       this.isLoading = true;
 
       this.studentsService.deleteStudentById(student.id).subscribe({

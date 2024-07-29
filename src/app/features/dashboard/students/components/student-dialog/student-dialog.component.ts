@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Student } from '../../models/student';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-student-dialog',
@@ -18,9 +19,9 @@ export class StudentDialogComponent {
   ) {
     this.studentForm = this.fb.group({
       // idStudent: [this.data?.id || '', Validators.required],
-      firstName: [this.data?.firstName || '', Validators.required],
-      lastName: [this.data?.lastName || '', Validators.required],
-      address: [this.data?.address || '', Validators.required],
+      firstName: [this.data?.firstName || '', [Validators.required, Validators.minLength(3)]],
+      lastName: [this.data?.lastName || '', [Validators.required, Validators.minLength(3)]],
+      address: [this.data?.address || '', [Validators.required]],
       email: [this.data?.email || '', [Validators.required, Validators.email]],
     });
   }

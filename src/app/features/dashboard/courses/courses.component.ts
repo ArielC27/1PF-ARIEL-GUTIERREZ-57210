@@ -90,7 +90,7 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourseById(id: string) {
-    if (confirm('Esta seguro?')) {
+    if (confirm('¿Esta seguro?')) {
       this.isLoading = true;
 
       this.coursesService.deleteCourseById(id).subscribe({

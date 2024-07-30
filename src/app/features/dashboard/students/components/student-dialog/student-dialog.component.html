@@ -3,88 +3,50 @@
     data ? "Editando " + data.firstName + " " + data.lastName : "Crear alumno"
   }}
 </h2>
-
-<!-- <mat-dialog-content>
+<mat-dialog-content>
   <form [formGroup]="studentForm">
     <mat-form-field class="w-full mb-3 pt-3">
       <mat-label>Nombre</mat-label>
       <input formControlName="firstName" matInput />
-      <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')"
-        >El campo es requerido</mat-error
-      >
+      <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')">
+        El campo es requerido
+      </mat-error>
+      <mat-error *ngIf="studentForm.get('firstName')?.hasError('minlength')">
+        El nombre debe tener al menos 3 caracteres
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full mb-3">
       <mat-label>Apellido</mat-label>
       <input formControlName="lastName" matInput />
-      <mat-error *ngIf="studentForm.get('lastName')?.hasError('required')"
-        >El campo es requerido</mat-error
-      >
+      <mat-error *ngIf="studentForm.get('lastName')?.hasError('required')">
+        El campo es requerido
+      </mat-error>
+      <mat-error *ngIf="studentForm.get('lastName')?.hasError('minlength')">
+        El apellido debe tener al menos 3 caracteres
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full mb-3">
       <mat-label>Dirección</mat-label>
       <input formControlName="address" matInput />
-      <mat-error *ngIf="studentForm.get('address')?.hasError('required')"
-        >El campo es requerido</mat-error
-      >
+      <mat-error *ngIf="studentForm.get('address')?.hasError('required')">
+        El campo es requerido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full mb-3">
       <mat-label>Email</mat-label>
       <input formControlName="email" matInput />
-      <mat-error *ngIf="studentForm.get('email')?.hasError('required')"
-        >El campo es requerido</mat-error
-      >
-      <mat-error *ngIf="studentForm.get('email')?.hasError('email')"
-        >Debe ingresar un correo electrónico válido</mat-error
-      >
-    </mat-form-field> -->
-    
-    <mat-dialog-content>
-      <form [formGroup]="studentForm">
-        <mat-form-field class="w-full mb-3 pt-3">
-          <mat-label>Nombre</mat-label>
-          <input formControlName="firstName" matInput />
-          <mat-error *ngIf="studentForm.get('firstName')?.hasError('required')">
-            El campo es requerido
-          </mat-error>
-          <mat-error *ngIf="studentForm.get('firstName')?.hasError('minlength')">
-            El nombre debe tener al menos 3 caracteres
-          </mat-error>
-        </mat-form-field>
-    
-        <mat-form-field class="w-full mb-3">
-          <mat-label>Apellido</mat-label>
-          <input formControlName="lastName" matInput />
-          <mat-error *ngIf="studentForm.get('lastName')?.hasError('required')">
-            El campo es requerido
-          </mat-error>
-          <mat-error *ngIf="studentForm.get('lastName')?.hasError('minlength')">
-            El apellido debe tener al menos 3 caracteres
-          </mat-error>
-        </mat-form-field>
-    
-        <mat-form-field class="w-full mb-3">
-          <mat-label>Dirección</mat-label>
-          <input formControlName="address" matInput />
-          <mat-error *ngIf="studentForm.get('address')?.hasError('required')">
-            El campo es requerido
-          </mat-error>
-        </mat-form-field>
-    
-        <mat-form-field class="w-full mb-3">
-          <mat-label>Email</mat-label>
-          <input formControlName="email" matInput />
-          <mat-error *ngIf="studentForm.get('email')?.hasError('required')">
-            El campo es requerido
-          </mat-error>
-          <mat-error *ngIf="studentForm.get('email')?.hasError('email')">
-            Debe ingresar un correo electrónico válido
-          </mat-error>
-        </mat-form-field>
-      </form>
-    </mat-dialog-content>
+      <mat-error *ngIf="studentForm.get('email')?.hasError('required')">
+        El campo es requerido
+      </mat-error>
+      <mat-error *ngIf="studentForm.get('email')?.hasError('email')">
+        Debe ingresar un correo electrónico válido
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
 <mat-dialog-actions>
   <button mat-dialog-close mat-button>Cancelar</button>
   <button (click)="onSubmit()" mat-button color="primary">Guardar</button>

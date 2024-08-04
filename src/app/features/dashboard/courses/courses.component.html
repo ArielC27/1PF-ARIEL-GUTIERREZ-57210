@@ -1,11 +1,11 @@
-<div class="example-sidenav-content">
+<!-- <div class="example-sidenav-content">
   <button (click)="openDialog()" mat-flat-button>
     <mat-icon>add</mat-icon> Crear curso
   </button>
 
   <p>El nombre del curso creado es: {{ nombreCurso }}</p>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="course" class="mat-elevation-z8">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>#</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -37,7 +37,7 @@
           <mat-icon>edit</mat-icon>
         </button>
 
-        <button (click)="deleteCourseById(element.id)" mat-icon-button>
+        <button (click)="deleteCourseById(element)" mat-icon-button>
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -46,4 +46,17 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-</div>
+</div> -->
+
+<button style="margin-bottom: 10px;" (click)="openDialog()" mat-flat-button>
+  <mat-icon>add</mat-icon> Crear curso
+</button>
+
+<app-generic-list
+  [dataSource]="course"
+  [displayedColumns]="displayedColumns"
+  [columnsResult]="columnsResult"
+  (editEvent) = "editCourse($event)"
+  (deleteEvent) = "deleteCourseById($event)"
+>
+</app-generic-list>

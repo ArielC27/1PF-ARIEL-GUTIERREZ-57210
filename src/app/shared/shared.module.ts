@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ReversePipe } from "./pipes/reverse.pipe";
+
 import { ResaltadoDirective } from "./directives/resaltado.directive";
 import { RepetirDirective } from "./directives/repetir.directive";
 import { GenericListComponent } from "./components/generic-list/generic-list.component";
@@ -15,6 +15,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule, MatNavList } from "@angular/material/list";
 import { DashboardRoutingModule } from "../features/dashboard/dashboard-routing.module";
+import { ReversePipe } from "./pipes/reverse/reverse.pipe";
 
 @NgModule({
   declarations: [

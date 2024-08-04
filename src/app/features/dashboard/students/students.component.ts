@@ -3,7 +3,7 @@ import { Student } from "./models/student";
 import { MatDialog } from "@angular/material/dialog";
 import { StudentsService } from "../../../core/services/students.service";
 import { StudentDialogComponent } from "./components/student-dialog/student-dialog.component";
-import { generateId } from "../../../shared/utils";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-students",
@@ -18,22 +18,20 @@ export class StudentsComponent {
     "lastName",
     "address",
     "email",
-    "actions"
+    "actions",
   ];
 
   columnsResult = {
-
     id: "#",
-    firstName: "nombre",
+    firstName: "Nombre",
     lastName: "Apellido",
     address: "Direccion",
     email: "Email",
-    actions: "Acciones"
+    actions: "Acciones",
   };
-  
-  dataSource: Student[] = [];
-  isLoading = false;
 
+  student: Student[] = [];
+  isLoading = false;
   constructor(
     private matDialog: MatDialog,
     private studentsService: StudentsService
@@ -46,8 +44,15 @@ export class StudentsComponent {
   loadStudents() {
     this.isLoading = true;
     this.studentsService.getStudents().subscribe({
-      next: (students) => {
-        this.dataSource = students;
+      next: (studentsFromDB) => {
+        this.student = studentsFromDB;
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 404) {
+            alert("Estudiantes no encontrados");
+          }
+        }
       },
       complete: () => {
         this.isLoading = false;
@@ -55,59 +60,88 @@ export class StudentsComponent {
     });
   }
 
-  openDialog(): void {
-    this.matDialog
-      .open(StudentDialogComponent)
-      .afterClosed()
-      .subscribe({
-        next: (value) => {
-          console.log("RECIBIMOS ESTE VALOR: ", value);
-
-          this.nombreAlumno = value.name;
-
-          value["id"] = generateId(5);
-          this.isLoading = true;
-          this.studentsService.addStudent(value).subscribe({
-            next: (students) => {
-              this.dataSource = [...students];
-            },
-            complete: () => {
-              this.isLoading = false;
-            },
-          });
-        },
-      });
+  openAddStudentDialog(): void {
+    const dialogRef = this.matDialog.open(StudentDialogComponent, {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.addStudent(result);
+      }
+    });
   }
 
-  editStudent(editingStudent: Student) {
+  addStudent(student: Student): void {
+    this.isLoading = true;
+    this.studentsService.addStudent(student).subscribe({
+      next: (addedStudent: Student) => {
+        this.student.push(addedStudent);
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          alert("Error al agregar el estudiante");
+        }
+      },
+      complete: () => {
+        this.isLoading = false;
+        this.loadStudents();
+      },
+    });
+  }
+
+  editStudent(editingStudent: Student): void {
     this.matDialog
       .open(StudentDialogComponent, { data: editingStudent })
       .afterClosed()
       .subscribe({
-        next: (value) => {
-          if (!!value) {
+        next: (updatedStudent) => {
+          if (updatedStudent) {
+            this.isLoading = true;
+
             this.studentsService
-              .editStudentById(editingStudent.id, value)
+              .editStudentById(editingStudent.id, updatedStudent)
               .subscribe({
-                next: (students) => {
-                  this.dataSource = [...students];
+                next: () => {
+                  this.isLoading = false;
+                },
+                error: (error) => {
+                  if (error instanceof HttpErrorResponse) {
+                    alert("Error al editar el estudiante");
+                  }
+                  this.isLoading = false;
+                },
+                complete: () => {
+                  this.isLoading = false;
+                  this.loadStudents();
                 },
               });
+          }
+        },
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            alert("Error al cerrar el diálogo");
           }
         },
       });
   }
 
-  deleteStudentById(student: Student) {
-    if (confirm("¿Esta seguro?")) {
+  deleteStudentById(student: Student): void {
+    if (confirm("¿Está seguro de que desea eliminar este estudiante?")) {
       this.isLoading = true;
 
       this.studentsService.deleteStudentById(student.id).subscribe({
-        next: (students) => {
-          this.dataSource = [...students];
+        next: () => {
+          // Filtra el estudiante eliminado de la lista actual
+          this.student = this.student.filter((s) => s.id !== student.id);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            alert("Error al eliminar el estudiante");
+          }
+          this.isLoading = false;
         },
         complete: () => {
           this.isLoading = false;
+          this.loadStudents();
         },
       });
     }

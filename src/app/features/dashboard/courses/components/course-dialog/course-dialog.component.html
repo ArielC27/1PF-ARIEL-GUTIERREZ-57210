@@ -4,14 +4,13 @@
 
 <mat-dialog-content>
   <form [formGroup]="courseForm">
-    <mat-form-field class="w-full">
+    <mat-form-field class="w-full mb-3 pt-3">
       <mat-label>Nombre</mat-label>
       <input formControlName="name" matInput />
       <mat-error>El campo es requerido</mat-error>
     </mat-form-field>
 
-    <!-- DATEPICKER (RANGO) -->
-    <mat-form-field class="w-full">
+    <mat-form-field class="w-full" >
       <mat-label>Fecha inicio - Fecha fin</mat-label>
       <mat-date-range-input [rangePicker]="picker">
         <input
@@ -27,12 +26,6 @@
         [for]="picker"
       ></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
-
-      <!-- @if (range.controls.start.hasError('matStartDateInvalid')) {
-      <mat-error>Invalid start date</mat-error>
-      } @if (range.controls.end.hasError('matEndDateInvalid')) {
-      <mat-error>Invalid end date</mat-error>
-      } -->
     </mat-form-field>
   </form>
 </mat-dialog-content>

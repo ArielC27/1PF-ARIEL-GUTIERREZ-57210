@@ -1,12 +1,12 @@
-<button style="margin-bottom: 10px;" (click)="openDialog()" mat-flat-button>
+<button style="margin-bottom: 10px;" (click)="openAddStudentDialog()" mat-flat-button>
   <mat-icon>add</mat-icon> Agregar Alumno
 </button>
 
 <app-generic-list
-  [dataSource]="dataSource"
+  [dataSource]="student"
   [displayedColumns]="displayedColumns"
   [columnsResult]="columnsResult"
-  (editStudentEvent) = "editStudent($event)"
-  (deleteStudentEvent) = "deleteStudentById($event)"
+  (editEvent) = "editStudent($event)"
+  (deleteEvent) = "deleteStudentById($event)"
 >
 </app-generic-list>

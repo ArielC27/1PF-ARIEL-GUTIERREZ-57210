@@ -1,14 +1,17 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DashboardComponent } from "./dashboard.component";
-import { CoursesComponent } from "./courses/courses.component";
-import { StudentsComponent } from "./students/students.component";
 
 const routes: Routes = [
   {
     path: "",
     component: DashboardComponent,
     children: [
+      {
+        path: "home",
+        loadChildren: () =>
+          import("./home/home.module").then((m) => m.HomeModule),
+      },
       {
         path: "courses",
         loadChildren: () =>
@@ -18,6 +21,10 @@ const routes: Routes = [
         path: "students",
         loadChildren: () =>
           import("./students/students.module").then((m) => m.StudentsModule),
+      },
+      {
+        path: "**",
+        redirectTo: "/dashboard/home",
       },
     ],
   },

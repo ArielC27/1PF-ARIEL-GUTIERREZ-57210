@@ -1,30 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { CourseDialogComponent } from './components/course-dialog/course-dialog.component';
-import { Course } from './models';
-import { generateId } from '../../../shared/utils';
-import { CoursesService } from '../../../core/services/courses.service';
+import { Component } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { CourseDialogComponent } from "./components/course-dialog/course-dialog.component";
+import { Course } from "./models/course";
+import { CoursesService } from "../../../core/services/courses.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrl: './courses.component.scss',
+  selector: "app-courses",
+  templateUrl: "./courses.component.html",
+  styleUrl: "./courses.component.scss",
 })
-export class CoursesComponent implements OnInit {
-  nombreCurso = '';
-
+export class CoursesComponent {
+  nombreCurso = "";
   displayedColumns: string[] = [
-    'id',
-    'name',
-    'startDate',
-    'endDate',
-    'actions',
+    "id",
+    "name",
+    "startDate",
+    "endDate",
+    "actions",
   ];
 
-  dataSource: Course[] = [];
+  columnsResult = {
+    id: "#",
+    name: "Nombre",
+    startDate: "Fecha Inicio",
+    endDate: "Fecha Fin",
+    actions: "Acciones",
+  };
 
+  course: Course[] = [];
   isLoading = false;
-
   constructor(
     private matDialog: MatDialog,
     private coursesService: CoursesService
@@ -33,12 +38,18 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.loadCourses();
   }
-
   loadCourses() {
     this.isLoading = true;
     this.coursesService.getCourses().subscribe({
-      next: (courses) => {
-        this.dataSource = courses;
+      next: (courseFromDB) => {
+        this.course = courseFromDB;
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          if (error.status === 404) {
+            alert("Cursos no encontrados");
+          }
+        }
       },
       complete: () => {
         this.isLoading = false;
@@ -47,58 +58,86 @@ export class CoursesComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.matDialog
-      .open(CourseDialogComponent)
-      .afterClosed()
-      .subscribe({
-        next: (value) => {
-          console.log('RECIBIMOS ESTE VALOR: ', value);
-
-          this.nombreCurso = value.name;
-
-          value['id'] = generateId(5);
-          this.isLoading = true;
-          this.coursesService.addCourse(value).subscribe({
-            next: (courses) => {
-              this.dataSource = [...courses];
-            },
-            complete: () => {
-              this.isLoading = false;
-            },
-          });
-        },
-      });
+    const dialogRef = this.matDialog.open(CourseDialogComponent, {});
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.addCourse(result);
+      }
+    });
   }
 
-  editCourse(editingCourse: Course) {
+  addCourse(course: Course): void {
+    this.isLoading = true;
+    this.coursesService.addCourse(course).subscribe({
+      next: (addedCourse: Course) => {
+        this.course.push(addedCourse);
+      },
+      error: (error) => {
+        if (error instanceof HttpErrorResponse) {
+          alert("Error al agregar el curso");
+        }
+      },
+      complete: () => {
+        this.isLoading = false;
+        this.loadCourses();
+      },
+    });
+  }
+
+  editCourse(editingCourse: Course): void {
     this.matDialog
       .open(CourseDialogComponent, { data: editingCourse })
       .afterClosed()
       .subscribe({
-        next: (value) => {
-          if (!!value) {
+        next: (updateCourse) => {
+          if (updateCourse) {
+            this.isLoading = true;
             this.coursesService
-              .editCourseById(editingCourse.id, value)
+              .editCourseById(editingCourse.id, updateCourse)
               .subscribe({
-                next: (courses) => {
-                  this.dataSource = [...courses];
+                next: () => {
+                  this.isLoading = false;
+                },
+                error: (error) => {
+                  if (error instanceof HttpErrorResponse) {
+                    alert("Error al editar el curso");
+                  }
+                  this.isLoading = false;
+                },
+                complete: () => {
+                  this.isLoading = false;
+                  this.loadCourses();
                 },
               });
+          }
+        },
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            alert("Error al cerrar el diálogo");
           }
         },
       });
   }
 
-  deleteCourseById(id: string) {
-    if (confirm('¿Esta seguro?')) {
+  deleteCourseById(course: Course) {
+    if (confirm("¿Está seguro de que desea eliminar este estudiante?")) {
       this.isLoading = true;
 
-      this.coursesService.deleteCourseById(id).subscribe({
-        next: (courses) => {
-          this.dataSource = [...courses];
+      this.coursesService.deleteCourseById(course.id).subscribe({
+        next: () => {
+          // Filtra el estudiante eliminado de la lista actual
+          this.course = this.course.filter((s) => s.id !== course.id);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          if (error instanceof HttpErrorResponse) {
+            alert("Error al eliminar el curso");
+          }
+          this.isLoading = false;
         },
         complete: () => {
           this.isLoading = false;
+          this.loadCourses();
         },
       });
     }

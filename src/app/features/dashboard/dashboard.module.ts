@@ -8,13 +8,12 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { CoursesModule } from "./courses/courses.module";
 import { MatListModule, MatNavList } from "@angular/material/list";
-import { StudentsModule } from "./students/students.module";
 import { SharedModule } from "../../shared/shared.module";
+import { InscripcionesComponent } from "./inscripciones/inscripciones.component";
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, InscripcionesComponent],
   exports: [DashboardComponent],
   imports: [
     CommonModule,
@@ -23,8 +22,6 @@ import { SharedModule } from "../../shared/shared.module";
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    CoursesModule,
-    StudentsModule,
     SharedModule,
     MatSidenavModule,
     MatListModule,

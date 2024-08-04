@@ -5,18 +5,18 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
   templateUrl: "./generic-list.component.html",
   styleUrl: "./generic-list.component.scss",
 })
-export class GenericListComponent<T> {
+export class GenericListComponent {
   @Input() displayedColumns: string[] = [];
   @Input() columnsResult: any = {};
-  @Input() dataSource: T[] = [];
+  @Input() dataSource: any[] = [];
 
-  @Output() editStudentEvent = new EventEmitter<T>();
-  @Output() deleteStudentEvent = new EventEmitter<T>();
+  @Output() editEvent = new EventEmitter<any>();
+  @Output() deleteEvent = new EventEmitter<any>();
 
-  editStudent(row: T){
-    this.editStudentEvent.emit(row);
-  };
-  deleteStudent(row: T){
-    this.deleteStudentEvent.emit(row);
-  };
+  edit(row: any): void {
+    this.editEvent.emit(row);
+  }
+  deleteItem(row: any): void {
+    this.deleteEvent.emit(row);
+  }
 }

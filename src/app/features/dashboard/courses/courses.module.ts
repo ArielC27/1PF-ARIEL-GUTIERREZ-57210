@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
   declarations: [CoursesComponent, CourseDialogComponent],
@@ -29,6 +30,7 @@ import { MatTableModule } from '@angular/material/table';
     MatDatepickerModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    SharedModule
   ],
 })
 export class CoursesModule {}

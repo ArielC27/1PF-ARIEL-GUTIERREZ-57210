@@ -1,6 +1,24 @@
 .button {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Alinea los elementos en los extremos */
+  align-items: center; /* Alinea verticalmente al centro */
+  padding: 0 16px; /* Ajusta el padding según sea necesario */
+  background-color: #3e343289; /* Ajusta el color de fondo según sea necesario */
+  color: white; /* Ajusta el color del texto según sea necesario */
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.user-info {
+  margin-left: auto; /* Alinea el usuario a la derecha */
+}

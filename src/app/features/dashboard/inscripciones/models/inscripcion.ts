@@ -1,7 +1,7 @@
 export interface Inscripcion {
-  id: number;
-  studentId: number;
-  courseId: number;
+  id: string;
+  nameStudent: string;
+  nameCourse: string;
   enrollmentDate: Date;
   status: string;
   isActive: boolean;

@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "43j9",
-      "firstName": "Josue",
-      "lastName": "Baez",
-      "email": "jbaez@mail.com",
+      "firstName": "Ariel",
+      "lastName": "Gutierrez",
+      "email": "agutierrez@mail.com",
       "password": "123456",
       "token": "jfsdk43dsakdjasb4Dsdsa$@#fS",
       "role": "ADMIN"
@@ -85,6 +85,38 @@
       "address": "1213 Avenida Cuarta, Ciudad, País",
       "email": "jorge.ramirez@example.com",
       "id": "st1238"
+    }
+  ],
+  "inscripciones": [
+    {
+      "id": "ghj12",
+      "nameStudent": "Juan Pérez",
+      "nameCourse": "Angular",
+      "enrollmentDate": "2024-01-15T00:00:00.000Z",
+      "status": "Activo"
+    },
+    {
+      "nameStudent": "Ana García Marquez",
+      "nameCourse": "C#",
+      "enrollmentDate": "2024-02-20T00:00:00.000Z",
+      "status": "Inactivo",
+      "id": "asd34"
+    },
+    {
+      "nameStudent": "Luis Martínez",
+      "nameCourse": "Oracle",
+      "enrollmentDate": "2024-03-10T00:00:00.000Z",
+      "status": "Inactivo",
+      "isActive": false,
+      "id": "hth78"
+    },
+    {
+      "id": "55c6",
+      "nameStudent": "Ariel",
+      "nameCourse": "Unit Testing",
+      "enrollmentDate": "2024-08-15T03:00:00.000Z",
+      "status": "Activo",
+      "isActive": false
     }
   ]
 }

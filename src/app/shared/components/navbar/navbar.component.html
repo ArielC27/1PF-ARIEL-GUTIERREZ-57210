@@ -1,16 +1,22 @@
-    <!-- TOOLBAR INICIO -->
-    <mat-toolbar style="background-color: blueviolet;">
-        <button
-          (click)="onToggleSidebar()"
-          mat-icon-button
-          class="example-icon"
-          aria-label="Example icon-button with menu icon"
-        >
-          <mat-icon>menu</mat-icon>
-        </button>
-        <div class="button">
-        <span>Sistema de Alumnos</span>
-        <!-- <div>
+<mat-toolbar style="background-color: blueviolet">
+  <button
+    (click)="onToggleSidebar()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="button">
+    <span>Sistema de Alumnos</span>
+    <div class="user-info">
+      @if(userName){
+      <span>
+        {{ userName }}
+      </span>
+      }
+    </div>
+    <!-- <div>
         <button
           mat-icon-button
           class="example-icon favorite-icon"
@@ -26,6 +32,5 @@
           <mat-icon>share</mat-icon>
         </button>
       </div> -->
-      </div>
-      </mat-toolbar>
-      <!-- TOOLBAR FIN -->
+  </div>
+</mat-toolbar>

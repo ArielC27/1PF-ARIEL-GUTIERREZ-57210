@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of } from "rxjs";
+import { BehaviorSubject, map, Observable, of } from "rxjs";
 import { User } from "../../features/dashboard/users/models/user";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -12,28 +13,62 @@ export class AuthService {
   authUser$ = this._authUser$.asObservable();
   private validToken = "ajksfbajkwhfqiwn";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
-  login() {
-    localStorage.setItem("token", this.validToken);
-    this.router.navigate(["dashboard", "courses"]);
-    this._authUser$.next({
-      id:"ar1el",
-      firstName: "ariel",
-      lastName: "gutierrez",
-      token: "jnkdfjnadfasf",
-      email: "ariel@gmail.com",
-      password: "callefalsa123",
-      role: "EMPLOYEE",
-    });
+  login(data: { email: string; password: string }) {
+    this.httpClient
+      .get<User[]>(environment.apiUrl + "/users", {
+        params: {
+          email: data.email,
+          password: data.password,
+        },
+      })
+      .subscribe({
+        next: (response) => {
+          if (!response.length) {
+            alert("Usuario o password invalido");
+          } else {
+            const authUser = response[0];
+            localStorage.setItem("token", authUser.token);
+            localStorage.setItem(
+              "userName",
+              authUser.firstName + " " + authUser.lastName
+            );
+            this._authUser$.next(authUser);
+            this.router.navigate(["dashboard", "home"]);
+          }
+        },
+      });
   }
 
   verificarToken(): Observable<boolean> {
     const token = localStorage.getItem("token");
-    return of(this.validToken === token);
+    if (!token) {
+      return of(false);
+    }
+    return this.httpClient
+      .get<User[]>(environment.apiUrl + "/users", {
+        params: {
+          token: token,
+        },
+      })
+      .pipe(
+        map((response) => {
+          if (!response.length) {
+            return false;
+          } else {
+            const authUser = response[0];
+            localStorage.setItem("token", authUser.token);
+            this._authUser$.next(authUser);
+            return true;
+          }
+        })
+      );
   }
 
-  obtenerUsuarioAutenticado() {}
+  obtenerUsuarioAutenticado() {
+    return localStorage.getItem("userName");
+  }
 
   logout() {
     localStorage.removeItem("token");
@@ -41,17 +76,18 @@ export class AuthService {
     this.router.navigate(["auth", "login"]);
   }
 
-  obtenerUsuarioObservable(): Observable<any> {
-    return new Observable((observer) => {
-      setInterval(() => {
-        observer.next({
-          name: "Name fake",
-          email: "fake@mail.com",
-        });
-        // observer.complete();
-        // observer.error('Error desconocido');
-      }, 2000);
-    });
+  obtenerUsuarioObservable() {
+    // return new Observable((observer) => {
+    //   setInterval(() => {
+    //     observer.next({
+    //       name: "Name fake",
+    //       email: "fake@mail.com",
+    //     });
+    //     // observer.complete();
+    //     // observer.error('Error desconocido');
+    //   }, 2000);
+    // });
+    //return localStorage.getItem("userName");
   }
 
   obtenerUsuarioPromise(): Promise<any> {

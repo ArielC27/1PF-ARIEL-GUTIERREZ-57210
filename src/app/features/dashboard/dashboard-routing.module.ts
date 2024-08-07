@@ -23,6 +23,13 @@ const routes: Routes = [
           import("./students/students.module").then((m) => m.StudentsModule),
       },
       {
+        path: "inscriptions",
+        loadChildren: () =>
+          import("./inscripciones/inscripciones.module").then(
+            (m) => m.InscripcionesModule
+          ),
+      },
+      {
         path: "**",
         redirectTo: "/dashboard/home",
       },

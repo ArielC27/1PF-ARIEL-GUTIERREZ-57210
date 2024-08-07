@@ -85,6 +85,13 @@
       "address": "1213 Avenida Cuarta, Ciudad, País",
       "email": "jorge.ramirez@example.com",
       "id": "st1238"
+    },
+    {
+      "id": "227c",
+      "firstName": "Tomas",
+      "lastName": "Paez",
+      "address": "Calle Falsa 123",
+      "email": "tomas@gmail.com"
     }
   ],
   "inscripciones": [
@@ -104,7 +111,7 @@
     },
     {
       "nameStudent": "Luis Martínez",
-      "nameCourse": "Oracle",
+      "nameCourse": "Sql",
       "enrollmentDate": "2024-03-10T00:00:00.000Z",
       "status": "Inactivo",
       "isActive": false,

@@ -7,16 +7,9 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { provideHttpClient, withFetch } from "@angular/common/http";
-import { StoreModule } from "@ngrx/store";
-import { rootReducer } from "./core/store/store";
-
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot(rootReducer, {}),
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [
     provideAnimationsAsync(),
     provideNativeDateAdapter(),

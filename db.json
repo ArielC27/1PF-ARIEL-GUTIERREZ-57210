@@ -16,7 +16,7 @@
       "email": "test@mail.com",
       "password": "123456",
       "token": "jfsdk43bghkr3db4Dsdsa$d@#S",
-      "role": "EMPLOYEE"
+      "role": "USER"
     }
   ],
   "courses": [
@@ -122,6 +122,14 @@
       "nameStudent": "Ariel",
       "nameCourse": "Unit Testing",
       "enrollmentDate": "2024-08-15T03:00:00.000Z",
+      "status": "Activo",
+      "isActive": false
+    },
+    {
+      "id": "7d06",
+      "nameStudent": "Nicolas Azzara",
+      "nameCourse": "React",
+      "enrollmentDate": "2024-08-10T03:00:00.000Z",
       "status": "Activo",
       "isActive": false
     }

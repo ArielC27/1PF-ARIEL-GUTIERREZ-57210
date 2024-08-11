@@ -20,18 +20,25 @@ export class AuthService {
     private notifier: NotifierService
   ) {}
 
-  login(data: { email: string; password: string }) {
+  login(data: { email: string; password: string; role: string }) {
     this.httpClient
       .get<User[]>(environment.apiUrl + "/users", {
         params: {
           email: data.email,
           password: data.password,
+          role: data.role,
         },
       })
       .subscribe({
         next: (response) => {
-          if (!response.length) {
-            alert("Usuario o password invalido");
+          const user = response.find(
+            (u) =>
+              u.email === data.email &&
+              u.password === data.password &&
+              u.role === data.role
+          );
+          if (!user) {
+            this.notifier.sendNotification("Usuario invalido");
           } else {
             const authUser = response[0];
             localStorage.setItem("token", authUser.token);
@@ -39,6 +46,7 @@ export class AuthService {
               "userName",
               authUser.firstName + " " + authUser.lastName
             );
+            localStorage.setItem("userRole", user.role);
             this._authUser$.next(authUser);
             this.router.navigate(["dashboard", "home"]);
           }

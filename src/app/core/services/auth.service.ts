@@ -4,6 +4,7 @@ import { User } from "../../features/dashboard/users/models/user";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { environment } from "../../../environments/environment";
+import { NotifierService } from "./notifier.service";
 
 @Injectable({
   providedIn: "root",
@@ -13,7 +14,11 @@ export class AuthService {
   authUser$ = this._authUser$.asObservable();
   private validToken = "ajksfbajkwhfqiwn";
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private notifier: NotifierService
+  ) {}
 
   login(data: { email: string; password: string }) {
     this.httpClient
@@ -37,6 +42,9 @@ export class AuthService {
             this._authUser$.next(authUser);
             this.router.navigate(["dashboard", "home"]);
           }
+        },
+        error: (error) => {
+          this.notifier.sendNotification("Error al iniciar sesion");
         },
       });
   }

@@ -11,9 +11,10 @@ import { MatCardModule } from "@angular/material/card";
 import { MatListModule } from "@angular/material/list";
 import { SharedModule } from "../../shared/shared.module";
 import { InscripcionesComponent } from "./inscripciones/inscripciones.component";
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, UsersComponent],
   exports: [DashboardComponent],
   imports: [
     CommonModule,

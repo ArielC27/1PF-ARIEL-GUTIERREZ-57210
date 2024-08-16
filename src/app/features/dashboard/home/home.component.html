@@ -1,23 +1,29 @@
 <div class="dashboard">
-    <h1>Bienvenido al sistema de Alumnos</h1>
-    <div class="header-container">
-      <p>En esta seccion podra conocer mas detalles de nuestra web. <br> Por favor seleccione alguna de las secciones disponibles utilizando la navegacion.</p>
-    </div>
-  
-    <div class="content-container">
-      <div class="tile-container">
-        <div class="tile">
-          <h2>Cursos</h2>
-          <small>Permite listar los cursos disponibles.</small>
-        </div>
-        <div class="tile">
-          <h2>Inscripciones</h2>
-          <small>Permite a los alumnos realizar inscripcion a distintos cursos.</small>
-        </div>
-        <div class="tile">
-          <h2>Alumnos</h2>
-          <small>Permite listar los alumnos inscriptos.</small>
-        </div>
+  <h1>Bienvenido al sistema de Alumnos</h1>
+  <div class="header-container">
+    <p>
+      En esta seccion podra conocer mas detalles de nuestra web. <br />
+      Por favor seleccione alguna de las secciones disponibles utilizando la
+      navegacion.
+    </p>
+  </div>
+
+  <div class="content-container">
+    <div class="tile-container">
+      <div class="tile" routerLink="courses" routerLinkActive="active">
+        <h2>Cursos</h2>
+        <small>Permite listar los cursos disponibles.</small>
+      </div>
+      <div class="tile" routerLink="inscriptions" routerLinkActive="active">
+        <h2>Inscripciones</h2>
+        <small
+          >Permite a los alumnos realizar inscripcion a distintos cursos.</small
+        >
+      </div>
+      <div class="tile" routerLink="students" routerLinkActive="active">
+        <h2>Alumnos</h2>
+        <small>Permite listar los alumnos inscriptos.</small>
       </div>
     </div>
   </div>
+</div>

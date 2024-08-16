@@ -7,11 +7,23 @@
     style="background-color: #3e343289"
   >
     <mat-nav-list>
-      <a mat-list-item routerLink="home" routerLinkActive="active">Inicio</a>
+      <a mat-list-item routerLink="home" routerLinkActive="active">
+        <mat-icon fontIcon="home"></mat-icon
+      ></a>
       <a mat-list-item routerLink="courses" routerLinkActive="active">Cursos</a>
-      <a mat-list-item routerLink="students" routerLinkActive="active">Alumnos</a>
-      <a mat-list-item routerLink="inscriptions" routerLinkActive="active">Inscripciones</a>
-      <a *ngIf="isAdmin" mat-list-item routerLink="users" routerLinkActive="active">Usuarios</a>
+      <a mat-list-item routerLink="students" routerLinkActive="active"
+        >Alumnos</a
+      >
+      <a mat-list-item routerLink="inscriptions" routerLinkActive="active"
+        >Inscripciones</a
+      >
+      <a
+        *ngIf="isAdmin"
+        mat-list-item
+        routerLink="users"
+        routerLinkActive="active"
+        >Usuarios</a
+      >
       <a (click)="logout()" mat-list-item>Cerrar Sesion</a>
     </mat-nav-list>
   </mat-drawer>

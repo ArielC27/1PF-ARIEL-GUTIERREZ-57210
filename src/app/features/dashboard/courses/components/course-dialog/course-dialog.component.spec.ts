@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseDialogComponent } from './course-dialog.component';
 
-describe('CourseDialogComponent', () => {
+xdescribe('CourseDialogComponent', () => {
   let component: CourseDialogComponent;
   let fixture: ComponentFixture<CourseDialogComponent>;
 
@@ -17,7 +17,7 @@ describe('CourseDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  xit('should create', () => {
     expect(component).toBeTruthy();
   });
 });

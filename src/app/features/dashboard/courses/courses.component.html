@@ -1,54 +1,4 @@
-<!-- <div class="example-sidenav-content">
-  <button (click)="openDialog()" mat-flat-button>
-    <mat-icon>add</mat-icon> Crear curso
-  </button>
-
-  <p>El nombre del curso creado es: {{ nombreCurso }}</p>
-
-  <table mat-table [dataSource]="course" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>#</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Nombre</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="startDate">
-      <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.startDate | date : "dd/MM/YYYY" }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="endDate">
-      <th mat-header-cell *matHeaderCellDef>Fecha de fin</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.endDate | date : "dd/MM/YYYY" }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Acciones</th>
-      <td mat-cell *matCellDef="let element">
-        <button (click)="editCourse(element)" mat-icon-button>
-          <mat-icon>edit</mat-icon>
-        </button>
-
-        <button (click)="deleteCourseById(element)" mat-icon-button>
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-</div> -->
-
-<button style="margin-bottom: 10px;" (click)="openDialog()" mat-flat-button>
+<button style="margin-bottom: 10px" (click)="openDialog()" mat-flat-button>
   <mat-icon>add</mat-icon> Crear curso
 </button>
 
@@ -56,7 +6,7 @@
   [dataSource]="course"
   [displayedColumns]="displayedColumns"
   [columnsResult]="columnsResult"
-  (editEvent) = "editCourse($event)"
-  (deleteEvent) = "deleteCourseById($event)"
+  (editEvent)="editCourse($event)"
+  (deleteEvent)="deleteCourseById($event)"
 >
 </app-generic-list>

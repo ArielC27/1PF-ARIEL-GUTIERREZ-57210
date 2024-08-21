@@ -127,7 +127,6 @@ export class InscripcionesComponent {
 
       this.inscriptionsService.deleteInscriptionById(inscription.id).subscribe({
         next: () => {
-          // Filtra el estudiante eliminado de la lista actual
           this.inscription = this.inscription.filter(
             (s) => s.id !== inscription.id
           );

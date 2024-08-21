@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component } from "@angular/core";
 import { AuthService } from "../../../core/services/auth.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private fb: FormBuilder) {
+  constructor(public authService: AuthService, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ["agutierrez@mail.com", [Validators.required, Validators.email]],
       password: ["123456", [Validators.required]],

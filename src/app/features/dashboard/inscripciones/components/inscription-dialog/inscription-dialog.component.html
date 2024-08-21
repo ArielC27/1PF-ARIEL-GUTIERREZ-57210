@@ -1,21 +1,30 @@
 <h2 mat-dialog-title>
-  {{ editingInscription ? "Editando inscripción de " + editingInscription.nameStudent : "Crear inscripción" }}
+  {{
+    editingInscription
+      ? "Editando inscripción de " +
+        editingInscription.nameStudent
+      : "Crear inscripción"
+  }}
 </h2>
 
 <mat-dialog-content>
   <form [formGroup]="inscripcionForm">
     <mat-form-field class="w-full mb-3 pt-3">
       <mat-label>Estudiante</mat-label>
-      <input formControlName="nameStudent" matInput />
-      <mat-error *ngIf="inscripcionForm.get('nameStudent')?.hasError('required')">
+      <input formControlName="nameStudent" matInput readonly="true"/>
+      <mat-error
+        *ngIf="inscripcionForm.get('nameStudent')?.hasError('required')"
+      >
         El campo es requerido
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="w-full mb-3">
       <mat-label>Curso</mat-label>
-      <input formControlName="nameCourse" matInput />
-      <mat-error *ngIf="inscripcionForm.get('nameCourse')?.hasError('required')">
+      <input formControlName="nameCourse" matInput readonly />
+      <mat-error
+        *ngIf="inscripcionForm.get('nameCourse')?.hasError('required')"
+      >
         El campo es requerido
       </mat-error>
     </mat-form-field>
@@ -30,7 +39,9 @@
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="inscripcionForm.get('enrollmentDate')?.hasError('required')">
+      <mat-error
+        *ngIf="inscripcionForm.get('enrollmentDate')?.hasError('required')"
+      >
         El campo es requerido
       </mat-error>
     </mat-form-field>
@@ -45,7 +56,6 @@
         El campo es requerido
       </mat-error>
     </mat-form-field>
-    
   </form>
 </mat-dialog-content>
 

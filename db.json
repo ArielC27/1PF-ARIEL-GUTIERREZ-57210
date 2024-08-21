@@ -96,42 +96,12 @@
   ],
   "inscripciones": [
     {
-      "id": "ghj12",
-      "nameStudent": "Juan Pérez",
-      "nameCourse": "Angular",
+      "nameStudent": "Perez Perez",
+      "nameCourse": "Javascript Avanzado",
       "enrollmentDate": "2024-01-15T00:00:00.000Z",
-      "status": "Activo"
-    },
-    {
-      "nameStudent": "Ana García Marquez",
-      "nameCourse": "C#",
-      "enrollmentDate": "2024-02-20T00:00:00.000Z",
       "status": "Inactivo",
-      "id": "asd34"
-    },
-    {
-      "nameStudent": "Luis Martínez",
-      "nameCourse": "Sql",
-      "enrollmentDate": "2024-03-10T00:00:00.000Z",
-      "status": "Inactivo",
-      "isActive": false,
-      "id": "hth78"
-    },
-    {
-      "id": "55c6",
-      "nameStudent": "Ariel",
-      "nameCourse": "Unit Testing",
-      "enrollmentDate": "2024-08-15T03:00:00.000Z",
-      "status": "Activo",
-      "isActive": false
-    },
-    {
-      "id": "7d06",
-      "nameStudent": "Nicolas Azzara",
-      "nameCourse": "React",
-      "enrollmentDate": "2024-08-10T03:00:00.000Z",
-      "status": "Activo",
-      "isActive": false
+      "isActive": true,
+      "id": "ghj12"
     }
   ]
 }

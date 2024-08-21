@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Inscripcion } from "../../models/inscripcion";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { InscripcionData } from "../../models/inscripcionData";
 
 @Component({
   selector: "app-inscription-dialog",
@@ -14,7 +15,7 @@ export class InscriptionDialogComponent {
   constructor(
     private fb: FormBuilder,
     private matDialogRef: MatDialogRef<InscriptionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public editingInscription?: Inscripcion
+    @Inject(MAT_DIALOG_DATA) public editingInscription?: InscripcionData
   ) {
     this.inscripcionForm = this.fb.group({
       nameStudent: ["", Validators.required],

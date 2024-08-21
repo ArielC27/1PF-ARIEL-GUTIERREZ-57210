@@ -4,6 +4,11 @@ import { MatDialog } from "@angular/material/dialog";
 import { InscriptionsService } from "../../../core/services/inscriptions.service";
 import { HttpErrorResponse } from "@angular/common/http";
 import { InscriptionDialogComponent } from "./components/inscription-dialog/inscription-dialog.component";
+import { Course } from "../courses/models/course";
+import { Student } from "../students/models/student";
+import { CoursesService } from "../../../core/services/courses.service";
+import { StudentsService } from "../../../core/services/students.service";
+import { InscripcionData } from "./models/inscripcionData";
 
 @Component({
   selector: "app-inscripciones",
@@ -29,32 +34,116 @@ export class InscripcionesComponent {
     actions: "Acciones",
   };
 
-  inscription: Inscripcion[] = [];
-  isLoading = false;
+  private inscription: Inscripcion[] = [];
+  private courses: Course[] = [];
+  private students: Student[] = [];
+  protected isLoading = false;
+  protected inscriptionData: InscripcionData[] = [];
+
   constructor(
     private matDialog: MatDialog,
-    private inscriptionsService: InscriptionsService
+    private inscriptionsService: InscriptionsService,
+    private courseService: CoursesService,
+    private studentService: StudentsService
   ) {}
 
   ngOnInit(): void {
     this.loadInscriptions();
   }
+
+  // loadInscriptions() {
+  //   this.isLoading = true;
+  //   this.inscriptionsService.getInscriptions().subscribe({
+  //     next: (inscriptionFromDB) => {
+  //       this.inscription = inscriptionFromDB;
+  //       console.log("Inscriptions received:", this.inscription);
+  //     },
+  //     error: (error) => {
+  //       if (error instanceof HttpErrorResponse) {
+  //         if (error.status === 404) {
+  //           alert("Inscripciones no encontradas");
+  //         }
+  //       }
+  //     },
+  //     complete: () => {
+  //       this.isLoading = false;
+  //     },
+  //   });
+  // }
   loadInscriptions() {
     this.isLoading = true;
-    this.inscriptionsService.getInscriptions().subscribe({
-      next: (inscriptionFromDB) => {
-        this.inscription = inscriptionFromDB;
-        console.log("Inscriptions received:", this.inscription);
+
+    // Cargar cursos
+    this.courseService.getCourses().subscribe({
+      next: (coursesFromDB) => {
+        this.courses = coursesFromDB;
+        console.log("Cursos received:", this.courses);
+
+        // Cargar alumnos después de obtener los cursos
+        this.studentService.getStudents().subscribe({
+          next: (studentsFromDB) => {
+            this.students = studentsFromDB;
+            console.log("Alumnos received:", this.students);
+
+            // Cargar inscripciones después de obtener cursos y alumnos
+            this.inscriptionsService.getInscriptions().subscribe({
+              next: (inscriptionsFromDB) => {
+                // Asocia los cursos y alumnos a las inscripciones
+                this.inscription = inscriptionsFromDB.map((inscription) => {
+                  const course = this.courses.find(
+                    (c) => c.id === inscription.course.id
+                  );
+                  const student = this.students.find(
+                    (s) => s.id === inscription.student.id
+                  );
+                  return {
+                    ...inscription,
+                    course: course ?? ({} as Course),
+                    student: student ?? ({} as Student),
+
+                    // nameCourse: course ? course.name : "Curso no encontrado",
+                    // nameStudent: student
+                    //   ? student.firstName + student.lastName
+                    //   : "Alumno no encontrado",
+                  };
+                });
+                console.log("Inscripciones received:", this.inscription);
+
+                if (this.inscription.length > 0) {
+                  this.inscription.map((i) => {
+                    this.inscriptionData.push({
+                      id: i.id,
+                      idStudent: i.student.id,
+                      nameStudent:
+                        i.student.lastName + " " + i.student.lastName,
+                      idCourse: i.course.id,
+                      nameCourse: i.course.name,
+                      isActive: i.status === "Activo",
+                      status: i.status,
+                      enrollmentDate: i.enrollmentDate,
+                    });
+                  });
+                }
+              },
+              error: (error) => {
+                if (error instanceof HttpErrorResponse) {
+                  if (error.status === 404) {
+                    alert("Inscripciones no encontradas");
+                  }
+                }
+              },
+              complete: () => {
+                this.isLoading = false;
+              },
+            });
+          },
+          error: (error) => {
+            console.error("Error al cargar los alumnos:", error);
+          },
+        });
       },
       error: (error) => {
-        if (error instanceof HttpErrorResponse) {
-          if (error.status === 404) {
-            alert("Inscripciones no encontradas");
-          }
-        }
-      },
-      complete: () => {
-        this.isLoading = false;
+        console.error("Error al cargar los cursos:", error);
       },
     });
   }
@@ -68,8 +157,23 @@ export class InscripcionesComponent {
     });
   }
 
-  addInscription(inscription: Inscripcion): void {
+  addInscription(inscriptionData: InscripcionData): void {
     this.isLoading = true;
+
+    const course = this.courses.find((c) => c.id === inscriptionData.idCourse);
+    const student = this.students.find(
+      (s) => s.id === inscriptionData.idStudent
+    );
+
+    const inscription: Inscripcion = {
+      id: inscriptionData.id,
+      course: course ?? ({} as Course),
+      student: student ?? ({} as Student),
+      enrollmentDate: inscriptionData.enrollmentDate,
+      status: inscriptionData.status,
+      isActive: inscriptionData.isActive,
+    };
+
     this.inscriptionsService.addInscription(inscription).subscribe({
       next: (addedInscription: Inscripcion) => {
         this.inscription.push(addedInscription);
@@ -86,7 +190,7 @@ export class InscripcionesComponent {
     });
   }
 
-  editInscription(editingInscription: Inscripcion): void {
+  editInscription(editingInscription: InscripcionData): void {
     this.matDialog
       .open(InscriptionDialogComponent, { data: editingInscription })
       .afterClosed()
@@ -122,7 +226,11 @@ export class InscripcionesComponent {
   }
 
   deleteInscriptionById(inscription: Inscripcion) {
-    if (confirm("¿Está seguro de que desea eliminar la inscripcion del estudiante?")) {
+    if (
+      confirm(
+        "¿Está seguro de que desea eliminar la inscripcion del estudiante?"
+      )
+    ) {
       this.isLoading = true;
 
       this.inscriptionsService.deleteInscriptionById(inscription.id).subscribe({

@@ -8,6 +8,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { UsersRoutingModule } from "./users-routing.module";
+import { MatOptionModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   declarations: [UsersComponent],
@@ -21,6 +23,8 @@ import { UsersRoutingModule } from "./users-routing.module";
     MatFormFieldModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatOptionModule,
+    MatSelectModule,
   ],
 })
 export class UsersModule {}

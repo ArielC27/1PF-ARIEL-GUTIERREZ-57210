@@ -11,10 +11,12 @@ export class UsersComponent {
 
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
-      usuario: [""],
-      nombre: [""],
-      apellido: [""],
-      dni: [""],
+      id: [""],
+      firstName: [""],
+      lastName: [""],
+      email: [""],
+      password: [""],
+      role: [""],
     });
   }
 

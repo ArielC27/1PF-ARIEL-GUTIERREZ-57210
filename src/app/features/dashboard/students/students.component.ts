@@ -129,7 +129,6 @@ export class StudentsComponent {
 
       this.studentsService.deleteStudentById(student.id).subscribe({
         next: () => {
-          // Filtra el estudiante eliminado de la lista actual
           this.student = this.student.filter((s) => s.id !== student.id);
           this.isLoading = false;
         },

@@ -17,6 +17,22 @@
       "password": "123456",
       "token": "jfsdk43bghkr3db4Dsdsa$d@#S",
       "role": "USER"
+    },
+    {
+      "id": "5a98",
+      "firstName": "Nicolas",
+      "lastName": "Brosan",
+      "email": "nicoBrosan@hotmail.com",
+      "password": "nicoB",
+      "role": "USER"
+    },
+    {
+      "id": "32aa",
+      "firstName": "Renzo",
+      "lastName": "Grillo",
+      "email": "renzo123@yahoo.com.ar",
+      "password": "renzo123",
+      "role": "USER"
     }
   ],
   "courses": [
@@ -94,14 +110,46 @@
       "email": "tomas@gmail.com"
     }
   ],
-  "inscripciones": [
+  "inscriptions": [
     {
-      "nameStudent": "Perez Perez",
-      "nameCourse": "Javascript Avanzado",
-      "enrollmentDate": "2024-01-15T00:00:00.000Z",
+      "id": "ghj12",
+      "course": {
+        "id": "abc123",
+        "name": "Javascript Avanzado",
+        "price": 9999,
+        "startDate": "04/08/2024",
+        "endDate": "24/08/2024"
+      },
+      "student": {
+        "id": "st1236",
+        "firstName": "Luis",
+        "lastName": "Perez",
+        "address": "789 Calle Secundaria, Ciudad, País",
+        "email": "luis.perez@example.com"
+      },
+      "enrollmentDate": "2024-01-27T03:00:00.000Z",
       "status": "Inactivo",
-      "isActive": true,
-      "id": "ghj12"
+      "isActive": true
+    },
+    {
+      "id": "ghj13",
+      "student": {
+        "id": "st1237",
+        "firstName": "María",
+        "lastName": "Lopez",
+        "address": "1011 Calle Tercera, Ciudad, País",
+        "email": "maria.lopez@example.com"
+      },
+      "course": {
+        "id": "c88c",
+        "name": "Angular",
+        "price": null,
+        "startDate": "2024-04-08T00:00:00.000Z",
+        "endDate": "2024-08-14T00:00:00.000Z"
+      },
+      "enrollmentDate": "2024-02-20T00:00:00.000Z",
+      "status": "Activo",
+      "isActive": true
     }
   ]
 }

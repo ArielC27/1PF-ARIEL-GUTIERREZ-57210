@@ -10,27 +10,27 @@ export class InscriptionsService {
 
   getInscriptions(): Observable<Inscripcion[]> {
     return this.httpCliente.get<Inscripcion[]>(
-      environment.apiUrl + "/inscripciones"
+      environment.apiUrl + "/inscriptions"
     );
   }
 
-  addInscription(inscription: Inscripcion) {
+  addInscription(inscription: Inscripcion): Observable<Inscripcion> {
     return this.httpCliente.post<Inscripcion>(
-      environment.apiUrl + "/inscripciones",
+      environment.apiUrl + "/inscriptions",
       inscription
     );
   }
 
   editInscriptionById(id: string, update: Inscripcion) {
     return this.httpCliente.put<void>(
-      environment.apiUrl + "/inscripciones/" + id,
+      environment.apiUrl + "/inscriptions/" + id,
       update
     );
   }
 
   deleteInscriptionById(id: string): Observable<void> {
     return this.httpCliente.delete<void>(
-      environment.apiUrl + "/inscripciones/" + id
+      environment.apiUrl + "/inscriptions/" + id
     );
   }
 }

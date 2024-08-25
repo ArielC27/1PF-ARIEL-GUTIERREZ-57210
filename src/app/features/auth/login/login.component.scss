@@ -3,54 +3,54 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #2c2c2c; /* Fondo oscuro */
+  background-color: #2c2c2c;
 }
 
 .login-card {
   max-width: 400px;
-  background-color: #1e1e1e; /* Fondo oscuro del card */
-  color: #e0e0e0; /* Color del texto en el card */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave */
-  transition: transform 0.3s, box-shadow 0.3s; /* Transición suave */
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .login-card:hover {
-  transform: translateY(-10px); /* Eleva el card */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Aumenta la sombra */
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 .login-card h1 {
-  color: #9c27b0; /* Color púrpura del título */
+  color: #9c27b0;
 }
 
 .mat-form-field .mat-form-field-label,
 .mat-form-field .mat-form-field-infix {
-  color: #e0e0e0; /* Color de las etiquetas e inputs */
+  color: #e0e0e0;
 }
 
 .mat-form-field {
-  border-radius: 8px; /* Bordes redondeados */
-  overflow: hidden; /* Asegura que el borde redondeado se aplique a los elementos internos */
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .mat-form-field .mat-form-field-underline {
-  background-color: #9c27b0; /* Color púrpura de la línea debajo del input */
-  border-radius: 4px; /* Bordes redondeados en la línea inferior */
+  background-color: #9c27b0;
+  border-radius: 4px;
 }
 
 .mat-icon {
-  color: #9c27b0; /* Color púrpura de los íconos */
+  color: #9c27b0;
 }
 
 .login-button {
-  background-color: #9c27b0 !important; /* Color púrpura del botón */
-  color: #ffffff !important; /* Color blanco del texto del botón */
-  transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
-  padding: 12px 24px; /* Ajusta el padding si es necesario */
-  border-radius: 20px; /* Ajusta el borde redondeado si es necesario */
+  background-color: #9c27b0 !important;
+  color: #ffffff !important;
+  transition: background-color 0.3s, transform 0.3s;
+  padding: 12px 24px;
+  border-radius: 20px;
 }
 
 .login-button:hover {
-  background-color: #7b1fa2 !important; /* Color púrpura más oscuro al pasar el ratón */
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño del botón */
+  background-color: #7b1fa2 !important;
+  transform: scale(1.05);
 }

@@ -9,7 +9,6 @@ import { MatCardModule } from "@angular/material/card";
 import { SharedModule } from "../../shared/shared.module";
 import { MatDrawer, MatSidenavModule } from "@angular/material/sidenav";
 import { MatListModule } from "@angular/material/list";
-import { CommonModule } from "@angular/common";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { AppRoutingModule } from "../../app-routing.module";
@@ -21,8 +20,11 @@ describe("DashboardComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      providers: [provideHttpClient(), provideAnimationsAsync(),
-        provideNativeDateAdapter(),],
+      providers: [
+        provideHttpClient(),
+        provideAnimationsAsync(),
+        provideNativeDateAdapter(),
+      ],
       imports: [
         MatDrawer,
         MatToolbarModule,
@@ -32,7 +34,7 @@ describe("DashboardComponent", () => {
         SharedModule,
         MatSidenavModule,
         MatListModule,
-        AppRoutingModule
+        AppRoutingModule,
       ],
     }).compileComponents();
 

@@ -1,53 +1,3 @@
-// import { Component, Inject } from "@angular/core";
-// import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-// import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-// import { InscripcionData } from "../../models/inscripcionData";
-
-// @Component({
-//   selector: "app-inscription-dialog",
-//   templateUrl: "./inscription-dialog.component.html",
-//   styleUrl: "./inscription-dialog.component.scss",
-// })
-// export class InscriptionDialogComponent {
-//   inscripcionForm: FormGroup;
-
-//   constructor(
-//     private fb: FormBuilder,
-//     private matDialogRef: MatDialogRef<InscriptionDialogComponent>,
-//     @Inject(MAT_DIALOG_DATA) public editingInscription?: InscripcionData
-//   ) {
-//     this.inscripcionForm = this.fb.group({
-//       idStudent: ["", Validators.required],
-//       nameStudent: ["", Validators.required],
-//       idCourse: ["", Validators.required],
-//       nameCourse: ["", Validators.required],
-//       enrollmentDate: ["", Validators.required],
-//       status: ["", Validators.required],
-//       isActive: [false],
-//     });
-
-//     if (this.editingInscription) {
-//       // Patch valores incluyendo IDs
-//       this.inscripcionForm.patchValue({
-//         idStudent: this.editingInscription.idStudent,
-//         nameStudent: this.editingInscription.nameStudent,
-//         idCourse: this.editingInscription.idCourse,
-//         nameCourse: this.editingInscription.nameCourse,
-//         enrollmentDate: this.editingInscription.enrollmentDate,
-//         status: this.editingInscription.status,
-//         isActive: this.editingInscription.isActive,
-//       });
-//     }
-//   }
-
-//   onSubmit(): void {
-//     if (this.inscripcionForm.valid) {
-//       // Devuelve el formulario completo con IDs incluidos
-//       this.matDialogRef.close(this.inscripcionForm.value);
-//     }
-//   }
-// }
-
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
@@ -75,10 +25,14 @@ export class InscriptionDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public editingInscription?: InscripcionData
   ) {
     this.inscripcionForm = this.fb.group({
-      idStudent: ["", Validators.required],
-      nameStudent: ["", Validators.required],
-      idCourse: ["", Validators.required],
-      nameCourse: ["", Validators.required],
+      idStudent: [this.students.length > 0 ? this.students[0].id : ""],
+      nameStudent: [
+        this.students.length > 0
+          ? `${this.students[0].firstName} ${this.students[0].lastName}`
+          : "",
+      ],
+      idCourse: [this.courses.length > 0 ? this.courses[0].id : ""],
+      nameCourse: [this.courses.length > 0 ? this.courses[0].name : ""],
       enrollmentDate: ["", Validators.required],
       status: ["", Validators.required],
       isActive: [false],
@@ -110,8 +64,10 @@ export class InscriptionDialogComponent implements OnInit {
     if (this.inscripcionForm.valid) {
       const formValue = this.inscripcionForm.value;
 
-      // Mapear los IDs a los nombres si es una inserción
       if (!this.editingInscription) {
+        formValue.idStudent = formValue.nameStudent?.id;
+        formValue.idCourse = formValue.nameCourse?.id;
+
         const selectedStudent = this.students.find(
           (student) => student.id === formValue.idStudent
         );
@@ -124,8 +80,23 @@ export class InscriptionDialogComponent implements OnInit {
           : "";
         formValue.nameCourse = selectedCourse ? selectedCourse.name : "";
       }
-
       this.matDialogRef.close(formValue);
+    }
+  }
+
+  selectedChangeStudent(student: any) {
+    if (student && student.id) {
+      this.inscripcionForm.get("idStudent")?.setValue(student.id);
+      this.inscripcionForm
+        .get("nameStudent")
+        ?.setValue(`${student.firstName} ${student.lastName}`);
+    }
+  }
+
+  selectedChangeCourse(course: any) {
+    if (course && course.id) {
+      this.inscripcionForm.get("idCourse")?.setValue(course.id);
+      this.inscripcionForm.get("nameCourse")?.setValue(course.name);
     }
   }
 }

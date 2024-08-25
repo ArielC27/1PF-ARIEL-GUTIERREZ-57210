@@ -1,136 +1,3 @@
-<!-- <h2 mat-dialog-title>
-  {{
-    editingInscription
-      ? "Editando inscripción de " +
-        editingInscription.nameStudent
-      : "Crear inscripción"
-  }}
-</h2>
-
-<mat-dialog-content>
-  <form [formGroup]="inscripcionForm">
-    <mat-form-field class="w-full mb-3 pt-3">
-      <mat-label>Estudiante</mat-label>
-      <input formControlName="nameStudent" matInput readonly="true"/>
-      <mat-error
-        *ngIf="inscripcionForm.get('nameStudent')?.hasError('required')"
-      >
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-full mb-3">
-      <mat-label>Curso</mat-label>
-      <input formControlName="nameCourse" matInput readonly />
-      <mat-error
-        *ngIf="inscripcionForm.get('nameCourse')?.hasError('required')"
-      >
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-full mb-3">
-      <mat-label>Fecha de inscripción</mat-label>
-      <input
-        formControlName="enrollmentDate"
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Fecha de inscripción"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error
-        *ngIf="inscripcionForm.get('enrollmentDate')?.hasError('required')"
-      >
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-full mb-3">
-      <mat-label>Estado</mat-label>
-      <mat-select formControlName="status" placeholder="Selecciona un estado">
-        <mat-option value="Activo">Activo</mat-option>
-        <mat-option value="Inactivo">Inactivo</mat-option>
-      </mat-select>
-      <mat-error *ngIf="inscripcionForm.get('status')?.hasError('required')">
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-  </form>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  <button mat-dialog-close mat-button>Cancelar</button>
-  <button (click)="onSubmit()" mat-button>Guardar</button>
-</mat-dialog-actions> -->
-
-<!-- <h2 mat-dialog-title>
-  {{
-    editingInscription
-      ? "Editando inscripción de " + editingInscription.nameStudent
-      : "Crear inscripción"
-  }}
-</h2>
-
-<mat-dialog-content>
-  <form [formGroup]="inscripcionForm">
-    <input formControlName="idStudent" type="hidden" />
-
-    <mat-form-field class="w-full mb-3 pt-3">
-      <mat-label>Estudiante</mat-label>
-      <input formControlName="nameStudent" matInput readonly="true" />
-      <mat-error
-        *ngIf="inscripcionForm.get('nameStudent')?.hasError('required')"
-      >
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-    <input formControlName="idCourse" type="hidden" />
-    <mat-form-field class="w-full mb-3">
-      <mat-label>Curso</mat-label>
-      <input formControlName="nameCourse" matInput readonly />
-      <mat-error
-        *ngIf="inscripcionForm.get('nameCourse')?.hasError('required')"
-      >
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-full mb-3">
-      <mat-label>Fecha de inscripción</mat-label>
-      <input
-        formControlName="enrollmentDate"
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Fecha de inscripción"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error
-        *ngIf="inscripcionForm.get('enrollmentDate')?.hasError('required')"
-      >
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="w-full mb-3">
-      <mat-label>Estado</mat-label>
-      <mat-select formControlName="status" placeholder="Selecciona un estado">
-        <mat-option value="Activo">Activo</mat-option>
-        <mat-option value="Inactivo">Inactivo</mat-option>
-      </mat-select>
-      <mat-error *ngIf="inscripcionForm.get('status')?.hasError('required')">
-        El campo es requerido
-      </mat-error>
-    </mat-form-field>
-  </form>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  <button mat-dialog-close mat-button>Cancelar</button>
-  <button (click)="onSubmit()" mat-button>Guardar</button>
-</mat-dialog-actions> -->
-
 <h2 mat-dialog-title>
   {{
     editingInscription
@@ -138,40 +5,53 @@
       : "Crear inscripción"
   }}
 </h2>
-
 <mat-dialog-content>
   <form [formGroup]="inscripcionForm">
-    <input formControlName="idStudent" type="hidden" />
-
-    <mat-form-field class="w-full mb-3 pt-3" *ngIf="editingInscription">
+    @if(editingInscription){
+    <mat-form-field class="w-full mb-3 pt-3">
       <mat-label>Estudiante</mat-label>
       <input formControlName="nameStudent" matInput readonly="true" />
     </mat-form-field>
-    
-    <mat-form-field class="w-full mb-3 pt-3" *ngIf="!editingInscription">
+    } @if(!editingInscription){
+    <mat-form-field class="w-full mb-3 pt-3">
       <mat-label>Estudiante</mat-label>
-      <mat-select formControlName="idStudent" required>
-        <mat-option *ngFor="let student of students" [value]="student.id">
+      <mat-select
+        formControlName="nameStudent"
+        required
+        (selectionChange)="selectedChangeStudent($event)"
+      >
+        @for (student of students; track student.id) {
+        <mat-option [value]="student">
           {{ student.firstName }} {{ student.lastName }}
         </mat-option>
+        }
       </mat-select>
     </mat-form-field>
+    }
+    <input formControlName="idStudent" type="hidden" />
 
-    <input formControlName="idCourse" type="hidden" />
-
-    <mat-form-field class="w-full mb-3" *ngIf="editingInscription">
+    @if(editingInscription){
+    <mat-form-field class="w-full mb-3">
       <mat-label>Curso</mat-label>
       <input formControlName="nameCourse" matInput readonly="true" />
     </mat-form-field>
-
-    <mat-form-field class="w-full mb-3" *ngIf="!editingInscription">
+    } @if(!editingInscription){
+    <mat-form-field class="w-full mb-3">
       <mat-label>Curso</mat-label>
-      <mat-select formControlName="idCourse" required>
-        <mat-option *ngFor="let course of courses" [value]="course.id">
+      <mat-select
+        formControlName="nameCourse"
+        required
+        (selectionChange)="selectedChangeCourse($event)"
+      >
+        @for ( course of courses; track course.id;) {
+        <mat-option [value]="course">
           {{ course.name }}
         </mat-option>
+        }
       </mat-select>
     </mat-form-field>
+    }
+    <input formControlName="idCourse" type="hidden" />
 
     <mat-form-field class="w-full mb-3">
       <mat-label>Fecha de inscripción</mat-label>
@@ -207,4 +87,3 @@
   <button mat-dialog-close mat-button>Cancelar</button>
   <button (click)="onSubmit()" mat-button>Guardar</button>
 </mat-dialog-actions>
-

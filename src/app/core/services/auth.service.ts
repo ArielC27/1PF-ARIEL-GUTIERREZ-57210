@@ -92,20 +92,6 @@ export class AuthService {
     this.router.navigate(["auth", "login"]);
   }
 
-  obtenerUsuarioObservable() {
-    // return new Observable((observer) => {
-    //   setInterval(() => {
-    //     observer.next({
-    //       name: "Name fake",
-    //       email: "fake@mail.com",
-    //     });
-    //     // observer.complete();
-    //     // observer.error('Error desconocido');
-    //   }, 2000);
-    // });
-    //return localStorage.getItem("userName");
-  }
-
   obtenerUsuarioPromise(): Promise<any> {
     return new Promise((resolve, reject) => {
       reject("Error desconocido");

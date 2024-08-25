@@ -56,16 +56,16 @@
       "endDate": "30/09/2024"
     },
     {
-      "id": "d033",
-      "name": "Sql Server",
-      "startDate": "07/07/2024",
-      "endDate": "14/08/2024"
+      "name": "Sql Server 2019",
+      "startDate": "2024-08-01T03:00:00.000Z",
+      "endDate": "2024-08-23T03:00:00.000Z",
+      "id": "d033"
     },
     {
-      "id": "015d",
-      "name": "TypeScript",
-      "startDate": "2024-10-01T03:00:00.000Z",
-      "endDate": "2024-10-17T03:00:00.000Z"
+      "id": "a106",
+      "name": "Oracle",
+      "startDate": "2024-08-01T03:00:00.000Z",
+      "endDate": "2024-08-31T03:00:00.000Z"
     }
   ],
   "products": [
@@ -108,31 +108,37 @@
       "lastName": "Paez",
       "address": "Calle Falsa 123",
       "email": "tomas@gmail.com"
+    },
+    {
+      "id": "9c04",
+      "firstName": "Nicolas",
+      "lastName": "Brosan",
+      "address": "La Matanza",
+      "email": "nick.Bostero@gmail.com"
     }
   ],
   "inscriptions": [
     {
-      "id": "ghj12",
-      "course": {
-        "id": "abc123",
-        "name": "Javascript Avanzado",
-        "price": 9999,
-        "startDate": "04/08/2024",
-        "endDate": "24/08/2024"
-      },
+      "id": "56cc",
       "student": {
-        "id": "st1236",
-        "firstName": "Luis",
-        "lastName": "Perez",
-        "address": "789 Calle Secundaria, Ciudad, País",
-        "email": "luis.perez@example.com"
+        "firstName": "Jorge Almiron",
+        "lastName": "Ramirez",
+        "address": "1213 Avenida Cuarta, Ciudad, País",
+        "email": "jorge.ramirez@example.com",
+        "id": "st1238"
       },
-      "enrollmentDate": "2024-01-27T03:00:00.000Z",
-      "status": "Inactivo",
-      "isActive": true
+      "course": {
+        "id": "9ba1",
+        "name": "C#",
+        "startDate": "01/09/2024",
+        "endDate": "30/09/2024"
+      },
+      "enrollmentDate": "2024-08-26T03:00:00.000Z",
+      "status": "Activo",
+      "isActive": false
     },
     {
-      "id": "ghj13",
+      "id": "b5a1",
       "student": {
         "id": "st1237",
         "firstName": "María",
@@ -143,13 +149,51 @@
       "course": {
         "id": "c88c",
         "name": "Angular",
-        "price": null,
-        "startDate": "2024-04-08T00:00:00.000Z",
-        "endDate": "2024-08-14T00:00:00.000Z"
+        "startDate": "04/08/2024",
+        "endDate": "14/08/2024"
       },
-      "enrollmentDate": "2024-02-20T00:00:00.000Z",
+      "enrollmentDate": "2024-09-01T03:00:00.000Z",
       "status": "Activo",
-      "isActive": true
+      "isActive": false
+    },
+    {
+      "id": "9ead",
+      "student": {
+        "id": "9c04",
+        "firstName": "Nicolas",
+        "lastName": "Brosan",
+        "address": "La Matanza",
+        "email": "nick.Bostero@gmail.com"
+      },
+      "course": {
+        "name": "Sql Server 2019",
+        "startDate": "2024-08-01T03:00:00.000Z",
+        "endDate": "2024-08-23T03:00:00.000Z",
+        "id": "d033"
+      },
+      "enrollmentDate": "2024-09-02T03:00:00.000Z",
+      "status": "Activo",
+      "isActive": false
+    },
+    {
+      "id": "5185",
+      "student": {
+        "id": "227c",
+        "firstName": "Tomas",
+        "lastName": "Paez",
+        "address": "Calle Falsa 123",
+        "email": "tomas@gmail.com"
+      },
+      "course": {
+        "id": "abc123",
+        "name": "Javascript Avanzado",
+        "price": 9999,
+        "startDate": "04/08/2024",
+        "endDate": "24/08/2024"
+      },
+      "enrollmentDate": "2024-10-01T03:00:00.000Z",
+      "status": "Activo",
+      "isActive": false
     }
   ]
 }

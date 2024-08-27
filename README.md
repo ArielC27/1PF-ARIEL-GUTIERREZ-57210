@@ -3,3 +3,4 @@ Proyecto Final de Angular - CoderHouse
 ### 1 ) Instalar paquetes de node: npm install
 ### 2) Instalar json-server: npm i json-server
 ### 3) Levantar servidor local de datos : json-server --watch db.json
+### 4) Sino probar con el siguiente comando: npx json-server --watch db.json
